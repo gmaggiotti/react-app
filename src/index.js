@@ -4,6 +4,6 @@ import GabeApp from './GabeApp';
 
 
 ReactDOM.render(
-  <GabeApp />,
+  <GabeApp txt=" txt property"/>,
   document.getElementById('root')
 );
