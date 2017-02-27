@@ -15,17 +15,17 @@ class Gabe extends React.Component {
 
     render() {
         return <div>
-        <h1>Hello Statefull Function Component</h1>
-            <h2>Wrapping 2 jsx into a div</h2>
-            <b>and adding prop: </b>{this.props.txt}
-            <br/>
-            <input type="Text" onChange={this.updateTxT.bind(this)} />
-            <br/>
-            <b>state var: </b> {this.state.txt_state}
-
+            <HeadLine/>
+            <SecondHeadLine var={this.state.txt_state}/>
+            <Widget update={this.updateTxT.bind(this)} />
         </div>
     }
 }
+
+const HeadLine = () => <h1>Hello Statefull Function Component</h1>
+const SecondHeadLine = (prop) => <div><h2>Wrapping 2 jsx into a div</h2> <b>and adding prop: </b>{prop.var} <br/></div>
+
+const Widget = (props) => <input type="text" onChange={props.update} />
 
 Gabe.protoTypes = {
     // txt: React.protoTypes.string
