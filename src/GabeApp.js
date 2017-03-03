@@ -5,13 +5,18 @@ class Gabe extends React.Component {
     constructor(){
         super();
         this.state = {
-            txt_state: "this is the state txt"
-            currentEvent:
+            txt_state: "this is the state txt",
+            currentEvent: "----"
         }
+        this.update = this.updateOnEvent.bind(this)
     }
 
     updateTxT(e) {
         this.setState({txt_state: e.target.value})
+    }
+
+    updateOnEvent(e) {
+        this.setState({currentEvent: e.type})
     }
 
     render() {
@@ -19,8 +24,10 @@ class Gabe extends React.Component {
         return <div>
             <HeadLine title="Statefull Function Component"/>
             <SecondHeadLine var={this.state.txt_state}/>
-            <Widget update={this.updateTxT.bind(this)} />
+            <Widget update={this.update} />
             <Button>I <Heart/> React</Button>
+            <TextAreaWidget ue={this.update}/>
+                <h1>{this.state.currentEvent}</h1>
         </div>
     }
 }
@@ -31,11 +38,12 @@ const Widget = (props) => <input type="text" onChange={props.update} />
 const Button = (props) => <button>{props.children}</button>
 const Heart = () => <span>&hearts;</span>
 
-const TextAreaWidget  = () => <textarea>
+const TextAreaWidget  = (props) => <textarea
+                                onKeyPress={props.ue}
+                                onCopy={props.ue}
                                 cols="30"
-                                rows="10"
-                                <h1>{this.state.currentEvent}</h1>
-                                </textarea>
+                                rows="10" />
+
 
 HeadLine.propTypes = {
      title: React.PropTypes.string
