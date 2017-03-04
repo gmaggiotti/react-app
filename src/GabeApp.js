@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 //Class component can have state
 class Gabe extends React.Component {
@@ -6,7 +7,8 @@ class Gabe extends React.Component {
         super();
         this.state = {
             txt_state: "this is the state txt",
-            currentEvent: "----"
+            currentEvent: "----",
+            a:  ""
         }
         this.update = this.updateOnEvent.bind(this)
     }
@@ -16,12 +18,24 @@ class Gabe extends React.Component {
     }
 
     updateOnEvent(e) {
-        this.setState({currentEvent: e.type})
+        this.setState({
+            currentEvent: e.type,
+        })
+    }
+
+    inputUpdate() {
+        this.setState({
+            a: ReactDOM.findDOMNode(this.a).value
+        })
     }
 
     render() {
 
         return <div>
+            <Input ref={ component => this.a = component}
+                   update={this.inputUpdate.bind(this)}
+                   />
+            <h1>a:{this.state.a}</h1>
             <HeadLine title="Statefull Function Component"/>
             <SecondHeadLine var={this.state.txt_state}/>
             <Widget update={this.update} />
@@ -29,6 +43,12 @@ class Gabe extends React.Component {
             <TextAreaWidget ue={this.update}/>
                 <h1>{this.state.currentEvent}</h1>
         </div>
+    }
+}
+
+class Input extends React.Component {
+    render(props) {
+        return <input type="text" onChange={this.props.update} />
     }
 }
 
