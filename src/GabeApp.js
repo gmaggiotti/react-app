@@ -20,26 +20,35 @@ class Gabe extends React.Component {
     updateOnEvent(e) {
         this.setState({
             currentEvent: e.type,
-        })
-    }
-
-    inputUpdate() {
-        this.setState({
             a: ReactDOM.findDOMNode(this.a).value
         })
     }
 
-    render() {
+    unmount(){
+        console.log("unmount")
+    }
 
+    //this fires only onces before render
+    componentWillMount(){
+        console.log("component will mount")
+    }
+
+    //this fires only onces after render
+    componentDidMount(){
+        console.log("component did mount")
+    }
+
+    render() {
+        console.log("render")
         return <div>
             <Input ref={ component => this.a = component}
-                   update={this.inputUpdate.bind(this)}
+                   update={this.update}
                    />
             <h1>a:{this.state.a}</h1>
             <HeadLine title="Statefull Function Component"/>
             <SecondHeadLine var={this.state.txt_state}/>
             <Widget update={this.update} />
-            <Button>I <Heart/> React</Button>
+            <Button unmount={this.unmount.bind(this)}>I <Heart/> React so I unmount h1</Button>
             <TextAreaWidget ue={this.update}/>
                 <h1>{this.state.currentEvent}</h1>
         </div>
@@ -52,10 +61,11 @@ class Input extends React.Component {
     }
 }
 
+
 const HeadLine = (props) => <h1>Hello {props.title}</h1>
 const SecondHeadLine = (props) => <div><h2>Wrapping 2 jsx into a div</h2> <b>and adding prop: </b>{props.var} <br/></div>
 const Widget = (props) => <input type="text" onChange={props.update} />
-const Button = (props) => <button>{props.children}</button>
+const Button = (props) => <button onClick={props.unmount}>{props.children}</button>
 const Heart = () => <span>&hearts;</span>
 
 const TextAreaWidget  = (props) => <textarea
@@ -73,5 +83,7 @@ HeadLine.propTypes = {
 /*
 const Gabe  = () => <h1>Hello stateless function component</h1>
 */
+
+
 
 export default Gabe;
