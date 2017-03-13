@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GabeApp from './GabeApp';
+import App12 from './App12';
 
 
 ReactDOM.render(
-  <GabeApp txt=" txt property"/>,
+  <App12 txt=" txt property"/>,
   document.getElementById('root')
 );
