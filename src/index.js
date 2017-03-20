@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App12 from './App12';
+import App from './App13';
 
 
 ReactDOM.render(
-  <App12 txt=" txt property"/>,
+  <App txt=" txt property"/>,
   document.getElementById('root')
 );
