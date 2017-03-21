@@ -5,6 +5,7 @@ class App14 extends React.Component {
     constructor() {
         super();
         this.state = {items: []}
+        this.filter = this.filter.bind(this)
     }
 
     componentWillMount() {
@@ -29,7 +30,7 @@ class App14 extends React.Component {
 
         return (
             <div>
-                <input type="text" onChange={this.filter.bind(this)}/>
+                <input type="text" onChange={this.filter}/>
                 {items.map(item => <Person key={item.name} person={item} />)}
             </div>
         )
