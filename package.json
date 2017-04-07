@@ -6,12 +6,13 @@
     "react-scripts": "0.8.4"
   },
   "dependencies": {
+    "expect": "^1.20.2",
     "react": "^15.4.1",
     "react-dom": "^15.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "debug": "react-scripts start $NODE_DEBUG_OPTIONS" ,
+    "debug": "react-scripts start $NODE_DEBUG_OPTIONS",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

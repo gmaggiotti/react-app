@@ -1,52 +1,39 @@
-//Reducer is a function that takes  state and action as argument and returns next state of the app
-let state ={
-    todos: [{
-        text: 'Eat food',
-        completed: true
-    }, {
-        text: 'Exercise',
-        completed: false
-    }],
-    visibilityFilter: 'SHOW_COMPLETED'
-}
-
-let addItemAction = { type: 'ADD_TODO', text: 'GAbe' }
-
-
-function visibilityFilter(state = 'SHOW_ALL', action) {
-    if (action.type === 'SET_VISIBILITY_FILTER') {
-        return action.filter;
-    } else {
-        return state;
-    }
-}
-
+//import expect, { createSpy, spyOn, isSpy } from 'expect'
+var expect = require('expect')
+var createSpy = expect.createSpy
+var spyOn = expect.spyOn
+var isSpy = expect.isSpy
 //Reducer
-function todos(state = [], action) {
+
+const counter = (state = 0 , action) => {
+
     switch (action.type) {
-        case 'ADD_TODO':
-            return state.concat([{ text: action.text, completed: false }]);
-        case 'TOGGLE_TODO':
-            return state.map((todo, index) =>
-                action.index === index ?
-                    { text: todo.text, completed: !todo.completed } :
-                    todo
-            )
+        case 'INCREMENT':
+            return ++state;
+        case 'DECREMENT':
+            return --state;
         default:
             return state;
     }
 }
 
+var result = expect(
+    counter(0, {type: "INCREMENT"})
+).toEqual(1);
 
+var result = expect(
+    counter(1, {type: "INCREMENT"})
+).toEqual(2);
 
-function todoApp(state = {}, action) {
-    return {
-        todos: todos(state.todos, action),
-        visibilityFilter: visibilityFilter(state.visibilityFilter, action)
-    };
-}
+var result = expect(
+    counter(1, {type: "DECREMENT"})
+).toEqual(0);
 
-var result = state;
-for(let i=0; i<5; i++)
-    result = todoApp(result,{ type: 'ADD_TODO', text: 'GAbe'+i })
-console.log(result.todos)
+var result = expect(
+    counter(1, {type: "SOMETHING"})
+).toEqual(1);
+
+var result = expect(
+    counter(undefined, {})
+).toEqual(0);
+
