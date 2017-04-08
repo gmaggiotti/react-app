@@ -21,7 +21,7 @@ class App16 extends React.Component {
             })
         }
         catch(err){
-            this.setState({err: err.message})
+            this.setState({err`: err.message})
         }
     }
     render(){
