@@ -5,7 +5,7 @@ class ReduxApp6 extends React.Component {
     constructor () {
         super();
         this.store = Redux.createStore(this.counter);
-        this.updateCounter = this.updateCounter.bind(this)
+        this.update = this.updateCounter.bind(this)
     }
 
     counter(state = 0, action)  {
@@ -22,12 +22,12 @@ class ReduxApp6 extends React.Component {
 
     updateCounter(){
         this.store.dispatch({ type: 'INCREMENT' });
-        this.setState({count: this.store.getState()})
+        this.setState({count: ""})
     }
 
     render() {
         return (
-                <button onClick={this.updateCounter}> {this.store.getState()}</button>
+                <button onClick={this.update}> {this.store.getState()}</button>
         )
 
     }
