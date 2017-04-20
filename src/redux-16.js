@@ -91,7 +91,6 @@ const todoApp = combineReducers({
     visibilityFilter
 });
 
-
 const { createStore } = Redux;
 const store = createStore(todoApp);
 
