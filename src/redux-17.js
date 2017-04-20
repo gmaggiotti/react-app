@@ -2,10 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 var Redux = require('redux');
-var expect = require('expect')
-var deepFreeze = require('deep-freeze');
-var createSpy = expect.createSpy
-var spyOn = expect.spyOn
+
 
 const todo = (state, action) => {
     switch (action.type) {
@@ -65,6 +62,7 @@ const todoApp = combineReducers({
 
 const { createStore } = Redux;
 const store = createStore(todoApp);
+
 const { Component } = React;
 
 let nextTodoId = 0;
